@@ -17,7 +17,7 @@ El conjunto de datos que hemos escogido, bank-additional-full.csv, se compone de
 
 El objetivo de este proyecto es realizar un profundo análisis de las características de este conjunto de datos y escoger el mejor modelo para predecir si el cliente contratará o no un depósito a largo plazo
 
-### Referencias:
+### Referencias:
 
 UCI Machine Learning Repository
 
@@ -34,30 +34,30 @@ UCI Machine Learning Repository
 - marital : estado civil (categorical: 'divorced','married','single','unknown'; note: 'divorced' means divorced or widowed)
 - education (categorical: 'basic.4y','basic.6y','basic.9y','high.school','illiterate','professional.course','university.degree','unknown')
 - default: tiene un crédito pendiente de pago? (categorical: 'no','yes','unknown')
-6 - housing: tiene una hipoteca? (categorical: 'no','yes','unknown')
-7 - loan: tiene un préstamos personal? (categorical: 'no','yes','unknown')
+- housing: tiene una hipoteca? (categorical: 'no','yes','unknown')
+- loan: tiene un préstamos personal? (categorical: 'no','yes','unknown')
 
-### Relacionado con el último contacto de la campaña actual:
-8 - contact: ctipo de comunicación (categorical: 'cellular','telephone')
-9 - month: mes del año del último contacto (categorical: 'jan', 'feb', 'mar', ..., 'nov', 'dec')
-10 - day_of_week: día de la semana del último contacto (categorical: 'mon','tue','wed','thu','fri')
-11 - duration: duración del último contacto, en segundos (numérico). Nota importante: este atributo afecta en gran medida al objetivo de salida (por ejemplo, si la duración=0 entonces y='no'). Sin embargo, la duración no se conoce antes de realizar una llamada. Además, después de la finalización de la llamada y es obviamente conocido. Por lo tanto, esta entrada sólo debería incluirse con fines de referencia y debería descartarse si la intención es tener un modelo de predicción realist
+#### Relacionado con el último contacto de la campaña actual:
+- contact: ctipo de comunicación (categorical: 'cellular','telephone')
+- month: mes del año del último contacto (categorical: 'jan', 'feb', 'mar', ..., 'nov', 'dec')
+- day_of_week: día de la semana del último contacto (categorical: 'mon','tue','wed','thu','fri')
+- duration: duración del último contacto, en segundos (numérico). Nota importante: este atributo afecta en gran medida al objetivo de salida (por ejemplo, si la duración=0 entonces y='no'). Sin embargo, la duración no se conoce antes de realizar una llamada. Además, después de la finalización de la llamada y es obviamente conocido. Por lo tanto, esta entrada sólo debería incluirse con fines de referencia y debería descartarse si la intención es tener un modelo de predicción realist
 
 #### Otros atributos:
-12 - campaign: número de contactos realizados durante esta campaña y para este cliente  (numeric, incluye el último contacto)
-13 - pdays: número de días transcurridos desde que se contactó por última vez con el cliente en una campaña anterior (numeric; 999 significa que no se contactó con el cliente previamente)
-14 - previous: número de contactos realizados antes de esta campaña y para este cliente (numeric)
-15 - poutcome: resultado de la campaña de marketing anterior (categorical: 'failure','nonexistent','success')
+- campaign: número de contactos realizados durante esta campaña y para este cliente  (numeric, incluye el último contacto)
+- pdays: número de días transcurridos desde que se contactó por última vez con el cliente en una campaña anterior (numeric; 999 significa que no se contactó con el cliente previamente)
+- previous: número de contactos realizados antes de esta campaña y para este cliente (numeric)
+- poutcome: resultado de la campaña de marketing anterior (categorical: 'failure','nonexistent','success')
 
 #### Atributos del contexto social y económico
-16 - emp.var.rate: tasa de variación del empleo - quarterly indicator (numeric)
-17 - cons.price.idx: índice de precios al consumo - monthly indicator (numeric)
-18 - cons.conf.idx: índice de confianza del consumidor - monthly indicator (numeric)
-19 - euribor3m: euribor a 3 meses - daily indicator (numeric)
-20 - nr.employed: número de empleados - quarterly indicator (numeric)
+- emp.var.rate: tasa de variación del empleo - quarterly indicator (numeric)
+- cons.price.idx: índice de precios al consumo - monthly indicator (numeric)
+- cons.conf.idx: índice de confianza del consumidor - monthly indicator (numeric)
+- euribor3m: euribor a 3 meses - daily indicator (numeric)
+- nr.employed: número de empleados - quarterly indicator (numeric)
 
 Output variable (desired target):
-21 - y - ¿ha contratado el cliente un depósito a plazo? (binary: 'yes','no')
+- y - ¿ha contratado el cliente un depósito a plazo? (binary: 'yes','no')
 
 ## Informe de análisis exploratorio de datos
 
@@ -81,7 +81,8 @@ Basándome en el análisis realizado en el informe de análisis de datos, he tra
 	
 
 ___
-## :ordenador: **Pila tecnológica**
+## Technology
+
 - Python
 - Pandas
 - Matplotlib
