@@ -64,21 +64,50 @@ Output variable (desired target):
 
 Para hacer un buen análisis exploratorio, he hecho estadísticas de resumen incluyendo estadísticas descriptivas: máximo, mínimo, media, desviación estándar, percentiles, correlaciones, tipos de datos, etc.
 
+He comprobado que no había valores nulos
 
-También he hecho gráficos de visualización de datos con el fin de capturar una gran cantidad de datos de una sola vez de una manera clara y concisa (Box Plots, Bar Plots, Correlation Matrix, etc.).
 
+Este dataset está desequilibrado, hay mucha más gente que no se ha suscrito al préstamo:
+yes (11,26 %)
+no (88,73 %)
+Para solucionar este problema, se procedió a realizar un Oversampling
 
-## 
+Análisis de las variables:
 
-Basándome en el análisis realizado en el informe de análisis de datos, he trazado en Tableau para corroborar las principales percepciones que he extraído de este conjunto de datos.
- Puedes acceder al dashbord [aquí.](https://public.tableau.com/profile/alejandra.mat.as.mart.n#!/vizhome/Diamondsdashboard/DiamondsDashboard?publish=yes)
+- AGE: La mayoría de clientes está entre los 25 y los 55, media (40 años). Esta variable tiene outliers pero el máximo es 98, que es una edad que pertenece a una muestra representativa de la población en general (no es como si tuviésemos un máximo de 150 años, ya que esto es imposible y se trataría de un error)
+Por tanto no quitamos outliers para que el modelo sea lo más representativo de la realidad posible
+- EDUCATION: La gente 'illiterate' es la que tiene mayor proporción de yes VS no
+Pero al ser tan pocos, vamos a fijarnos mejor en el dato del resto y vemos la tendencia de que a más estudios, más gente se suscribe al préstamo
+- MARITAL: Más de la mitad de los clientes están casados (60 %), pero vemos que los que están solteros se han subscrito al préstamo en mayor proporción que el resto (14 % contratan)
+- DEFAULT: Esta variable no nos aporta información relevante ya que apenas hay gente en situación de default y no se ve un comportamiento similar entre el 'no' y el 'unknown'
+- HOUSING: No hay casi diferencia en la tendencia de las personas con hipoteca o a la hora de suscribirse a un depósito
+- LOAN: La mayoría de los clientes no tiene un préstamos personal (82,42 %)
+- JOB: Para intentar reducir el número de unknowns voy a poner que aquellas personas mayores de 66 años están retiradas (edad legal de jubilación en portugal)
+Se impacta en mayor medida a personas que trabajan de admin (1352 yes), blue-collar (638) y technician (730) para la promoción de la contratación del préstamo
+Es interesante ver que contratan en mayor proporción el préstamo aquellas personas que son estudiantes, retirados, desempleados y admin así que para futuras campañas sería interesante prestarles especial atención 
+- CONTACT: Se producen más impactos a través de móvil que de teléfono fijo y hay una mayor proporción de personas que se suscriben al préstamo vía móvil así que funciona mejor este tipo de canal
+- MONTH: Es interesante ver que mayo ha sido el mes con mayor captación. A los que se impactó en mayo, junio, julio y agosto (verano) tienen una mayor proporción de no suscritores (90 % aprox), en cambio a los que se impactó en septiembre y octubre mejora el ratio
+- DAY_OF_WEEK: No hay mucha diferencia entre los días de la semana. Los lunes son los días que menos proporción de suscripciones tienen y los jueves los que más
+- DURATION: Como nos pone en la descripción del dataset, este atributo afecta en gran medida al objetivo de salida. Sin embargo, la duración no se conoce antes de realizar una llamada. Además, después de la finalización de la llamada y ya se conoce. Por lo tanto, la excluiremos de nuestro modelo de predicción.
+- CAMPAIGN: Al igual que la edad, esta variable tiene muchos outliers pero pueden ser importantes así que no quitaremos filas sino que lo agruparemos por grupos.
+- PREVIOUS: A la mayoría de clientes no se les impactó antes de esta campaña
+- PDAYS: Relacionado con la variable anterior, a la mayoría de clientes no se les impactó antes de esta campaña
+- POUTCOME: los clientes que contrataron con la anterior campaña han contratado en esta en mayor proporción que el resto de clientes (65 %)
+
+Herramientas utilizadas:
+OneHotEncodeer
+StandardScaler
+Oversampling
+TrainTestSplit
+Cross-validation
+Confusion matrix
 
 ## Conclusiones
 
-- El <strong>carataje</strong> es la característica con mayor correlación con el <strong>precio</strong> del diamante: cuanto más alto sea el quilate (más pesa), más alto será el precio.
-- El volumen también está muy correlacionado con el precio.
-- En cuanto al <strong>color</strong>, en un principio habría pensado que los diamantes de color D (100 % incoloros), que son los mejores, tendrían el precio medio más alto. Sin embargo, los que tienen el precio medio más alto son los J y los I (menos incoloros).
-- Los diamantes de mayor peso y precio son principalmente incoloros (J, I, H): 8 de los 10 diamantes de mayor peso y precio son incoloros.
+Tras comporbar el performance de diferentes modelos, he comprobado que el algoritmo que mejor funciona es el Decission tree classifier:
+Prediction accuracy=93.0 %
+Cross Validation=0.9261236104569861
+La matriz de confusión nos indica que nuestro modelo predijo correctamente 6381 no abonados (0), 7186 abonados (1) con 13567 predicciones correctas en total y tuvimos 1053 predicciones incorrectas en total.
 	
 
 ___
